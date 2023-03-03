@@ -30,7 +30,9 @@ include("partials/header.php");
                         <img src="./media/avatar.jpg" alt="">
                     </div>
                     <div class="ml-4">
+                        <a href="">
                         <h4 class="font-bold text-gray-800">Biraj Parajuli <span class="border-l-2 pl-1 text-sm text-gray-700"> 4 Ads</span></h4>
+                        </a>
                         <p>9877223322</p>
                     </div>
 
