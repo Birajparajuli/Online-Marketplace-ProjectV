@@ -2,7 +2,7 @@
 include("partials/header.php");
 
 ?>
-<body>
+
     <?php include("partials/nav.php")?>
     <div class=" bg-gray-100 m-4 p-10 rounded-md">
         <div>
@@ -22,7 +22,7 @@ include("partials/header.php");
         <div class="grid grid-cols-4 gap-10">
             <a href="product.php">
             <div class="mt-4 border-2 rounded-md p-2 border-white hover:border-gray-300 transition-all hover:bg-slate-50">
-                <div class=" w-72">
+                <div class="">
                 <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg" alt="" class="rounded-md">
                 <h4 class="font-bold text-gray-800 mt-3">Men's Half Sleeve Printed Round neck Tshirt</h4>
                 <span class="text-sm my-3">Brand New</span>
