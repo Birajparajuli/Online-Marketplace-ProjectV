@@ -2,15 +2,24 @@
 include("partials/header.php");
 include("partials/db.php");
 
+
+$username = $password =$confirm_password ="";
+$username_err = $password_err =$confirm_password_err ="";
+
 // Check if data come from POST action
 if (isset($_POST["submit"])) {
-    echo "hello";
+    // Check if username is empty
+     if(empty(trim($_POST["name"]))){
+        $username_err = "Username Cannot be Blank";
+     };
     $name = $_POST["name"];
     $email = $_POST["email"];
     $phone = $_POST["phone"];
     $password = $_POST["password"];
 
-    $sql = "INSERT INTO user (name, email, phone, password) VALUES ('$name', '$email', '$phone', '$password')";
+    $password_hash =password_hash($password, PASSWORD_DEFAULT);
+
+    $sql = "INSERT INTO user (name, email, phone, password) VALUES ('$name', '$email', '$phone', '$password_hash')";
 
     if (mysqli_query($conn, $sql)) {
         echo '<script type="text/javascript">toastr.error("Account Created")</script>';

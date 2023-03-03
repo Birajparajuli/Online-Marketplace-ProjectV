@@ -1,10 +1,22 @@
 <?php
 include("partials/header.php");
+include("partials/db.php");
+
+if (isset($_POST["submit"])) {
+    echo "hello";
+  
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+
+    $sql = "SELECT * FROM signup WHERE email = '$email' AND password = '$password'";
+    
+    
+}
+
+
 ?>
 
-<html class="h-full bg-gray-50">
 
-<body class="h-full">
 
 
     <div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -12,7 +24,7 @@ include("partials/header.php");
             <div>
                 <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Log in to your account</h2>
             </div>
-            <form class="mt-8 space-y-6" action="#" method="POST">
+            <form class="mt-8 space-y-6" action="login.php" method="POST">
                 <input type="hidden" name="remember" value="true">
                 <div class="-space-y-px rounded-md shadow-sm">
                     <div>
@@ -29,11 +41,9 @@ include("partials/header.php");
                     </div>
                 </div>
                 <div>
-                    <button type="submit"
-                        class="group relative flex w-full justify-center rounded-md  border-transparent bg-black border-2 py-2 px-4 text-sm font-medium text-white  focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 hover:bg-white hover:border-black hover:text-gray-800 transition-all">
-                        
-                        Log In
-                    </button>
+                    <input type="submit" value="Log In" name="submit"
+                        class="group relative flex w-full justify-center rounded-md  border-transparent bg-black border-2 py-2 px-4 text-sm font-medium text-white  focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 hover:bg-white hover:border-black hover:text-gray-800 transition-all"/>
+                   
                 </div>
 
                 <div class="text-sm ">
