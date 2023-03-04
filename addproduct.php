@@ -2,6 +2,11 @@
 include("partials/header.php");
 include("partials/nav.php");
 
+if(!isset($_SESSION["user_email"])){
+    
+    header("Location:login.php");
+}
+
 ?>
 <div class="px-10 lg:px-10">
     <div>

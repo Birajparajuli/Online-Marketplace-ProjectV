@@ -3,22 +3,36 @@ include("partials/header.php");
 include("partials/db.php");
 
 if (isset($_POST["submit"])) {
-    echo "hello";
+    
   
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    $sql = "SELECT * FROM signup WHERE email = '$email' AND password = '$password'";
+    // Check if Username and Password is empty
+    if(empty($email)){
+        echo '<script type="text/javascript">toastr.error("Email is required !!")</script>';
+    }
+    if(empty($password)){
+        echo '<script type="text/javascript">toastr.error("Password is required !!")</script>';
+    }
+
+    $sql = "SELECT * FROM user WHERE email = '$email' AND password = '$password'";
     
-    
+    $res = mysqli_query($conn, $sql);
+    $user = $res->fetch_assoc();
+
+    if(mysqli_num_rows($res)==1){
+        echo '<script type="text/javascript">toastr.error("Account Created")</script>';
+        session_start();
+        $_SESSION["user_email"]=$email;
+        header('Location:index.php');
+    }else{
+        echo '<script type="text/javascript">toastr.error("Wrond Email/password Combination")</script>';
+    }
 }
 
 
 ?>
-
-
-
-
     <div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div class="w-full max-w-md space-y-8">
             <div>
