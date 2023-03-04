@@ -1,10 +1,57 @@
 <?php
 include("partials/header.php");
 include("partials/nav.php");
+include('partials/db.php');
 
-if(!isset($_SESSION["user_email"])){
-    
+if (!isset($_SESSION["user_email"])) {
+
     header("Location:login.php");
+}
+
+if (isset($_POST["submit"])) {
+   
+
+    $name = $_POST['product-name'];
+    $description = $_POST['product-description'];
+    $image = $_FILES['product-photo']['name'];
+    $category = $_POST['product-category'];
+    $condition = $_POST['product-condition'];
+    $location = $_POST['product-location'];
+    $used = $_POST['product-used'];
+    $price = $_POST['product-price'];
+    $negotiable = $_POST['product-negotiable'];
+    $expiry = date('Y-m-d', strtotime($_POST['ad-expiry']));
+
+    $posted_by = $_SESSION['user_email'];
+
+
+   
+    // Image Validate
+    $allowed_extension = ['png', 'jpg', 'jpeg', 'webp'];
+    $file_extension = pathinfo($image, PATHINFO_EXTENSION);
+
+     //File Name
+     $file_name = time().'.'.$file_extension;
+
+    if (!in_array($file_extension, $allowed_extension)) {
+        echo "Invalid file format";
+        exit();
+    } else {
+        $sql = "INSERT INTO ads(name, description, image_1, category, condition_id, location, used_for, price, is_negotiable, posted_by, expiry_at ) 
+        VALUES('$name', '$description', '$file_name', '$category', '$condition', '$location', '$used', '$price', '$negotiable', '$posted_by', '$expiry')";
+        $query_run = mysqli_query($conn, $sql);
+        if($query_run){
+            move_uploaded_file($_FILES['product-photo']['tmp_name'],'media/uploads/ad/'.$file_name);
+            echo "Ad uploaded Succsessfully";
+            header("Location:index.php");
+
+        }else{
+            echo(mysqli_error($conn));
+
+        }
+    }
+
+
 }
 
 ?>
@@ -19,71 +66,82 @@ if(!isset($_SESSION["user_email"])){
                 </div>
             </div>
             <div class="mt-5 md:col-span-2 md:mt-0">
-                <form action="#" method="POST">
+                <form action="#" method="POST" enctype="multipart/form-data">
                     <div class="shadow sm:overflow-hidden sm:rounded-md">
-                        <div class="space-y-6 bg-white px-4 py-5 sm:p-6 border-b-2">
+                        <div class=" bg-white px-4 py-5 sm:p-6 border-b-2">
                             <div class="grid grid-cols-3 gap-6">
                                 <div class="col-span-3 sm:col-span-2">
-                                    <label for="company-website"
+                                    <label for="product-name"
                                         class="block text-sm font-medium leading-6 text-gray-900">Product Name</label>
                                     <div class="mt-2 block rounded-md shadow-sm">
 
-                                        <input type="text" name="company-website" id="company-website" class="block w-full flex-1 rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm placeholder:pl-2
+                                        <input type="text" name="product-name" required class="block w-full flex-1 rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm placeholder:pl-2
                   " placeholder="">
                                     </div>
                                 </div>
                             </div>
 
                             <div>
-                                <label for="about"
+                                <label for="product-description"
                                     class="block text-sm font-medium leading-6 text-gray-900">Description</label>
                                 <div class="mt-2">
-                                    <textarea id="about" name="about" rows="3"
+                                    <textarea name="product-description" rows="3" required
                                         class="mt-1 block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:py-1.5 sm:text-sm placeholder:pl-2"
                                         placeholder="Brief description of your Product"></textarea>
                                 </div>
-                                
+
                             </div>
                             <div>
                                 <label class="block text-sm font-medium leading-6 text-gray-900">Add Photos</label>
-                                <input type="file" name="" id="">
+                                <input type="file" name="product-photo" required>
                             </div>
                         </div>
                         <div class="bg-white px-4 py-5 sm:p-6  border-b-2">
                             <div class="grid grid-cols-6 gap-6">
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="country"
+                                    <label for="product-category"
                                         class="block text-sm font-medium leading-6 text-gray-900">Category</label>
-                                    <select id="country" name="country" autocomplete="country-name"
-                                        class="mt-2 block w-full rounded-md border-0 bg-white py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300">
-                                        <option>Home Appliances</option>
-                                        <option>Electronics</option>
-                                        <option>Clothing</option>
-                                    </select>
+                                    <?php
+                                    $sql = "SELECT * FROM categories";
+                                    $query_run = mysqli_query($conn, $sql);
+                                    if (mysqli_num_rows($query_run) > 0) { ?>
+                                        <select name="product-category" required
+                                            class="mt-2 block w-full rounded-md border-0 bg-white py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300">
+                                            <?php foreach ($query_run as $item) { ?>
+                                                <option value="<?= $item["cat_id"]?>"><?= $item["name"]?></option>
+                                            <?php } ?>
+                                        </select>
+
+                                    <?php } ?>
+
+
+
+
+
                                 </div>
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="country"
+                                    <label for="product-condition"
                                         class="block text-sm font-medium leading-6 text-gray-900">Condition</label>
-                                    <select id="country" name="country" autocomplete="country-name"
+                                    <select name="product-condition" required
                                         class="mt-2 block w-full rounded-md border-0 bg-white py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300">
-                                        <option>Brand New</option>
-                                        <option>Like New</option>
-                                        <option>Used</option>
-                                        <option>Not Working</option>
+                                        <option value="1">Brand New</option>
+                                        <option value="2">Like New</option>
+                                        <option value="3">Used</option>
+                                        <option value="4">Not Working</option>
                                     </select>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="first-name"
+                                    <label for="product-location"
                                         class="block text-sm font-medium leading-6 text-gray-900">Location</label>
-                                    <input type="text" name="first-name" id="first-name" autocomplete="given-name"
+                                    <input type="text" name="product-location" required
                                         class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400">
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="last-name"
+                                    <label for="product-used"
                                         class="block text-sm font-medium leading-6 text-gray-900">Used For</label>
-                                    <input type="text" name="last-name" id="last-name" autocomplete="family-name"
+                                    <input type="text" name="product-used"
                                         class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400">
                                 </div>
                             </div>
@@ -91,27 +149,27 @@ if(!isset($_SESSION["user_email"])){
                         <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
                             <div class="grid grid-cols-6 gap-6">
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="last-name"
+                                    <label for="product-price"
                                         class="block text-sm font-medium leading-6 text-gray-900">Price</label>
-                                    <input type="text" name="last-name" id="last-name" autocomplete="family-name"
+                                    <input type="text" name="product-price" required
                                         class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400">
                                 </div>
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="country"
+                                    <label for="product-negotiable"
                                         class="block text-sm font-medium leading-6 text-gray-900">Negotiable ?
                                     </label>
-                                    <select id="country" name="country" autocomplete="country-name"
+                                    <select name="product-negotiable" required
                                         class="mt-2 block w-full rounded-md border-0 bg-white py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300">
-                                        <option>Negotiable</option>
-                                        <option>Fixed</option>
+                                        <option value="0">Negotiable</option>
+                                        <option value="1">Fixed</option>
 
                                     </select>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="first-name"
-                                        class="block text-sm font-medium leading-6 text-gray-900">Expiray Date</label>
-                                    <input type="date" name="first-name" id="first-name" autocomplete="given-name"
+                                    <label for="ad-expiry"
+                                        class="block text-sm font-medium leading-6 text-gray-900">Expiry Date</label>
+                                    <input type="date" name="ad-expiry" required
                                         class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 placeholder:px-2">
                                 </div>
 
@@ -119,7 +177,7 @@ if(!isset($_SESSION["user_email"])){
                             </div>
                         </div>
                         <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
-                            <button type="submit"
+                            <button type="submit" name="submit"
                                 class="inline-flex justify-center text-white border-2 border-gray-800 px-4 py-2 text-sm rounded-md bg-gray-800 hover:bg-white hover:border-grey-600 hover:text-gray-600 transition-all	">Add
                                 Advertisment</button>
                         </div>
