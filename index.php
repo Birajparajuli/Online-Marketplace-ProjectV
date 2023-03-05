@@ -59,5 +59,6 @@ include("partials/db.php");
         
       
     </div>
+    <?php include("./partials/footer.php")?>
 </body>
 </html>
