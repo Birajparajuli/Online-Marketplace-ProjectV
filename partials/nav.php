@@ -10,7 +10,7 @@
         
         <?php if(isset($_SESSION["user_email"])):?>
           <a href="addproduct.php" class="text-gray-600 hover:text-gray-800 mr-4 border-2 px-3 py-2 rounded-md text-sm	">Post Your Ad</a>
-         <a href="profile.php" class="text-white border-2 px-3 py-2 text-sm rounded-md bg-gray-700 hover:bg-gray-800 transition-all	">
+         <a href="userprofile.php" class="text-white border-2 px-3 py-2 text-sm rounded-md bg-gray-700 hover:bg-gray-800 transition-all	">
           <i class="fa fa-user"></i>
          </a>
          <a href="logout.php" class="text-white border-2 px-3 py-2 text-sm rounded-md bg-red-600 hover:bg-red-800 transition-all cursor-pointer	">

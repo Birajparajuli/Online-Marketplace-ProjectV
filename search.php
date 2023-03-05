@@ -1,29 +1,32 @@
 <?php
+
 include("partials/header.php");
 include("partials/db.php");
+include("partials/nav.php");
+
+if (isset($_POST["submit"])) {
+    $query= $_POST['query'];
+}
+
+    // $query_run = mysqli_query($conn, $sql);
 
 ?>
 
-    <?php include("partials/nav.php")?>
-    <div class=" bg-gray-100 m-4 p-10 rounded-md">
+
+<div class=" bg-gray-100 m-4 p-10 rounded-md">
         <div>
-            <h1 class="text-center text-4xl font-bold">What are You Looking For?</h1>
+            <h1 class="text-center text-2xl font-bold">Search Results for:<?php echo $query?></h1>
         </div>
-        <div class="flex justify-center items-center my-5">
-            <form action="search.php" method="POST">
-            <input type="text" name="query" required class="p-3 lg:w-[40vw] rounded-md border-2 border-gray-400" >
-            <input type="submit" name="submit" value="Search"  class=" ml-3 bg-black py-3 px-5 rounded-md text-white border-2 hover:bg-white hover:text-gray-800 hover:border-gray-900 transition-all cursor-pointer">
-            </form>
-        </div>
+      
     </div>
 
     <div class=" px-4 w-full my-4">
         <div class=" border-b-2">
-            <h3 class="mt-2 mb-1 font-bold text-lg">Latest Uploads</h3>
+            <h3 class="mt-2 mb-1 font-bold text-lg">Search Results</h3>
         </div>
         <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
         <?php
-        $sql = "SELECT * FROM ads";
+        $sql = "SELECT * FROM ads WHERE name LIKE '%$query%' OR description LIKE '%$query%'";
         $query_run = mysqli_query($conn, $sql);
         if(mysqli_num_rows($query_run)>0){ 
             foreach($query_run as $item) { ?>
@@ -54,10 +57,19 @@ include("partials/db.php");
             
         
             <?php } ?>
+        <?php }else{?>
+            <div class="text-center w-[100vw] my-10 text-2xl">
+            <i class="fa fa-face-sad-tear "></i>
+            <h3>No Results found !!!</h3>
+            </div>
+
         <?php } ?>
         </div>
         
       
     </div>
+
+
+    
 </body>
 </html>

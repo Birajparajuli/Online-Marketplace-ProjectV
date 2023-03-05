@@ -19,11 +19,11 @@ $find_user = mysqli_query($conn, $user);
 
 if(mysqli_num_rows($find_user) > 0){
     $user = mysqli_fetch_assoc($find_user);
+   }else{
+    echo '<script type="text/javascript">toastr.error("Product Not Found !!!")</script>';
+    sleep (5);
+    header("Location:index.php");
    }
-
-
-
-   
 ?>
 
 <body>
