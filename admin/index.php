@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RamroBazar-Admin Panel</title>
-</head>
-<body>
-    <h1>Hi From Admin Panel</h1>
+<?php
+include("./partials/header.php");
+
+if (!isset($_SESSION["admin_email"])) {
+
+    header("Location:login.php");
+}
+?>
+    <?php include("./partials/nav.php")?>
+    <h1><?=$_SESSION['admin_email']?></h1>
 </body>
 </html>

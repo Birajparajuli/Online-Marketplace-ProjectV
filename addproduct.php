@@ -19,7 +19,8 @@ if (isset($_POST["submit"])) {
     $location = $_POST['product-location'];
     $used = $_POST['product-used'];
     $price = $_POST['product-price'];
-    $negotiable = $_POST['product-negotiable'];
+    $negotiable =(int) $_POST['product-negotiable'];
+    $delivery = (int)$_POST['product-delivery'];
     $expiry = date('Y-m-d', strtotime($_POST['ad-expiry']));
 
     $posted_by = $_SESSION['user_email'];
@@ -37,8 +38,8 @@ if (isset($_POST["submit"])) {
         echo "Invalid file format";
         exit();
     } else {
-        $sql = "INSERT INTO ads(name, description, image_1, category, condition_id, location, used_for, price, is_negotiable, posted_by, expiry_at ) 
-        VALUES('$name', '$description', '$file_name', '$category', '$condition', '$location', '$used', '$price', '$negotiable', '$posted_by', '$expiry')";
+        $sql = "INSERT INTO ads(name, description, image_1, category, condition_id, location, used_for, price, is_negotiable, posted_by, expiry_at, delivery ) 
+        VALUES('$name', '$description', '$file_name', '$category', '$condition', '$location', '$used', '$price', '$negotiable', '$posted_by', '$expiry', '$delivery')";
         $query_run = mysqli_query($conn, $sql);
         if($query_run){
             move_uploaded_file($_FILES['product-photo']['tmp_name'],'media/uploads/ad/'.$file_name);
@@ -162,6 +163,17 @@ if (isset($_POST["submit"])) {
                                         class="mt-2 block w-full rounded-md border-0 bg-white py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300">
                                         <option value="0">Negotiable</option>
                                         <option value="1">Fixed</option>
+
+                                    </select>
+                                </div>
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="product-delivery"
+                                        class="block text-sm font-medium leading-6 text-gray-900">Delivery ?
+                                    </label>
+                                    <select name="product-delivery" required
+                                        class="mt-2 block w-full rounded-md border-0 bg-white py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300">
+                                        <option value="0">Not Avliable</option>
+                                        <option value="1">Avilable</option>
 
                                     </select>
                                 </div>

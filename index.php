@@ -1,6 +1,6 @@
 <?php
 include("partials/header.php");
-
+include("partials/db.php");
 
 ?>
 
@@ -19,23 +19,43 @@ include("partials/header.php");
         <div class=" border-b-2">
             <h3 class="mt-2 mb-1 font-bold text-lg">Latest Uploads</h3>
         </div>
-        
-        <div class="grid grid-cols-4 gap-10">
-            <a href="product.php">
-            <div class="mt-4 border-2 rounded-md p-2 border-white hover:border-gray-300 transition-all hover:bg-slate-50">
+        <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
+        <?php
+        $sql = "SELECT * FROM ads";
+        $query_run = mysqli_query($conn, $sql);
+        if(mysqli_num_rows($query_run)>0){ 
+            foreach($query_run as $item) { ?>
+                
+                
+                <a href="product.php?id=<?= $item["ad_id"]?>">
+                <div class="mt-4 border-2 rounded-md p-2 border-white hover:border-gray-300 transition-all hover:bg-slate-50">
                 <div class="">
-                <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg" alt="" class="rounded-md">
-                <h4 class="font-bold text-gray-800 mt-3">Men's Half Sleeve Printed Round neck Tshirt</h4>
-                <span class="text-sm my-3">Brand New</span>
-                <p class="text-gray-800 font-bold">Rs. 1,200</p>
+                <img src="./media/uploads/ad/<?=$item["image_1"]?>" alt="" class="rounded-md h-48 w-96 object-cover">
+                <h4 class="font-bold text-gray-800 mt-3"><?= $item["name"]?></h4>
+                <?php if(($item["condition_id"] ) === '1'){ ?>
+                    <span class="text-sm my-3">Brand New</span>
+                <?php }elseif(($item["condition_id"] ) === '2'){ ?>
+                    <span class="text-sm my-3">Like New</span>
+                <?php }elseif(($item["condition_id"] ) === '3'){ ?>
+                    <span class="text-sm my-3">Used</span>
+                <?php }elseif(($item["condition_id"] ) === '4'){ ?>
+                    <span class="text-sm my-3">Not Working</span>
+                <?php } else {?>
+                    <span class="text-sm my-3"></span>
+                <?php }?>
+                
+                <p class="text-gray-800 font-bold">Rs.<?= $item["price"]?></p>
                 </div>
             </div>
             </a>
-            <?php
-            echo '<script type="text/javascript">toastr.error("Have Fun")</script>';
-            ?>
+           
             
+        
+            <?php } ?>
+        <?php } ?>
         </div>
+        
+      
     </div>
 </body>
 </html>
