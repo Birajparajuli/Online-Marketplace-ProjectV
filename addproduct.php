@@ -181,7 +181,7 @@ if (isset($_POST["submit"])) {
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="ad-expiry"
                                         class="block text-sm font-medium leading-6 text-gray-900">Expiry Date</label>
-                                    <input type="date" name="ad-expiry" required
+                                    <input type="date" name="ad-expiry" required min="<?php echo date('Y-m-d');?>"
                                         class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 placeholder:px-2">
                                 </div>
 
