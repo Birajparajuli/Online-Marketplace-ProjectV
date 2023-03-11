@@ -10,7 +10,7 @@ $query_run = mysqli_query($conn, $sql);
 
 if(mysqli_affected_rows($conn)>0){
     echo '<script type="text/javascript">toastr.success("Product Not Found !!!")</script>';
-    header("Location:index.php");
+    header("Location:userprofile.php");
 }else{
     echo '<script type="text/javascript">toastr.error("Product Not Found !!!")</script>';
 }
