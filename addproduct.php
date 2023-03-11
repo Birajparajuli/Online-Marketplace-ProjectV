@@ -86,7 +86,7 @@ if (isset($_POST["submit"])) {
                                 <label for="product-description"
                                     class="block text-sm font-medium leading-6 text-gray-900">Description</label>
                                 <div class="mt-2">
-                                    <textarea name="product-description" rows="3" required
+                                    <textarea name="product-description" rows="10" required
                                         class="mt-1 block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:py-1.5 sm:text-sm placeholder:pl-2"
                                         placeholder="Brief description of your Product"></textarea>
                                 </div>

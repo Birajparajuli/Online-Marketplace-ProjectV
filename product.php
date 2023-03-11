@@ -30,8 +30,14 @@ if(mysqli_num_rows($find_user) > 0){
     <?php include("partials/nav.php") ?>
 
     <div class="lg:px-14 p-2 grid grid-cols-1 gap-10 md:grid-cols-1 lg:grid-cols-2 py-10">
-        <div class=" rounded-lg">
-            <img src="./media/uploads/ad/<?=$ad["image_1"]?>" alt="" class="rounded-md">
+        <div class="">
+            <img src="./media/uploads/ad/<?=$ad["image_1"]?>" alt="" class=" h-[70vh] w-full object-fill rounded-md">
+
+            <div class=" my-3 border-2 rounded-md p-2">
+                <p>
+                Note: We recommend you to physically inspect the product/ Service before making payment. Avoid paying fees or advance payment to sellers.
+                </p>
+            </div>
         </div>
         <div >
             <span
@@ -148,7 +154,7 @@ if(mysqli_num_rows($find_user) > 0){
 
         </div>
     </div>
-
+    <?php include("./partials/footer.php")?>
 </body>
 
 </html>
