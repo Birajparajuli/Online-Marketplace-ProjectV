@@ -11,11 +11,11 @@
       </a>
       <a href="pendingproduct.php" class="border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium border-l-4">
         <i class="fa fa-bag-shopping mr-2"></i>
-        Pending Products
+        Pending Ads
       </a>
-      <a href="pendingusers.php" class="border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium border-l-4">
+      <a href="allusers.php" class="border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium border-l-4">
         <i class="fa fa-clipboard-user mr-2"></i>
-        Pending Users
+        All Users
       </a>
       <a href="categories.php" class="border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium border-l-4">
         <i class="fa fa-bag-shopping mr-2"></i>

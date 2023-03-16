@@ -55,7 +55,7 @@ if (isset($_POST["submit"])) {
         echo '<script type="text/javascript">toastr.error("File Already Exists !!")</script>';
 
     }else{
-        $query ="UPDATE ads SET name ='$name', description='$description', image_1='$image', condition_id='$condition', category='$category', location='$location', used_for='$used', price='$price',is_negotiable='$negotiable',expiry_at='$expiry', delivery='$delivery' WHERE ad_id = '$ad_id'";
+        $query ="UPDATE ads SET name ='$name', description='$description', image_1='$image', condition_id='$condition', category='$category', location='$location', used_for='$used', price='$price',is_negotiable='$negotiable',expiry_at='$expiry', delivery='$delivery', approval_status=0 WHERE ad_id = '$ad_id'";
         $query_run = mysqli_query($conn, $query);
 
         if ($query_run) {

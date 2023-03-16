@@ -16,7 +16,7 @@ include("./partials/nav.php")
     </div>
     <div class=" m-5 ">
         <div>
-        <h4 class=" border-b-2 w-full text-lg font-bold">Pending Users</h4>
+        <h4 class=" border-b-2 w-full text-lg font-bold">All Users</h4>
 
         </div>
         <div>

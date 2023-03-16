@@ -44,7 +44,7 @@ if (isset($_POST["submit"])) {
         if($query_run){
             move_uploaded_file($_FILES['product-photo']['tmp_name'],'media/uploads/ad/'.$file_name);
             echo "Ad uploaded Succsessfully";
-            header("Location:index.php");
+            header("Location:userprofile.php");
 
         }else{
             echo(mysqli_error($conn));
