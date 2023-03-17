@@ -70,7 +70,7 @@ if (!isset($_SESSION["admin_email"])) {
                 </div>
                 <div class=" p-6 text-center bg-yellow-200 rounded-md">
                     <h3 class="text-4xl font-bold mb-2"><?= $total_pending_ads?></h3>
-                    <p>Pending Ads</p>
+                    <p>Ads Approval Pending</p>
                 </div>
             </div>
 

@@ -26,7 +26,7 @@ if (isset($_POST["submit"])) {
         </div>
         <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
         <?php
-        $sql = "SELECT * FROM ads WHERE name LIKE '%$query%' OR description LIKE '%$query%'";
+        $sql = "SELECT * FROM ads WHERE approval_status=1 AND name LIKE '%$query%' OR description LIKE '%$query%'";
         $query_run = mysqli_query($conn, $sql);
         if(mysqli_num_rows($query_run)>0){ 
             foreach($query_run as $item) { ?>
