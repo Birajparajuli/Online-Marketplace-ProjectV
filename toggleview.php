@@ -12,7 +12,7 @@ $sql = "SELECT * FROM ads WHERE ad_id='$id'";
 $query_run = mysqli_query($conn, $sql);
 $data = mysqli_fetch_assoc($query_run);
 
-$view = $data['view'];
+$view = $data['view_status'];
 
 if($view === '1'){
     $view  = '0';
