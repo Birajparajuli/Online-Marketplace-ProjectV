@@ -10,10 +10,10 @@ include("partials/db.php");
         <h1 class="text-center text-4xl font-bold">What are You Looking For?</h1>
     </div>
     <div class="flex justify-center items-center my-5">
-        <form action="search.php" method="POST">
+        <form action="search.php" method="POST" class="flex flex-col lg:flex-row w-full lg:w-auto">
             <input type="text" name="query" required class="p-3 lg:w-[40vw] rounded-md border-2 border-gray-400">
             <input type="submit" name="submit" value="Search"
-                class=" ml-3 bg-black py-3 px-5 rounded-md text-white border-2 hover:bg-white hover:text-gray-800 hover:border-gray-900 transition-all cursor-pointer">
+                class="lg:ml-3 bg-black py-3 px-5 rounded-md text-white border-2 hover:bg-white hover:text-gray-800 hover:border-gray-900 transition-all cursor-pointer mt-2 lg:mt-0">
         </form>
     </div>
 </div>
@@ -22,7 +22,7 @@ include("partials/db.php");
     <div class=" border-b-2">
         <h3 class="mt-2 mb-1 font-bold text-lg">Top Categories</h3>
     </div>
-    <div class="mt-2 grid grid-cols-7 gap-10 text-center">
+    <div class="mt-2 grid grid-cols-2 lg:grid-cols-7 gap-5 text-center">
 
         <?php
         $cat_query = "SELECT * FROM categories";

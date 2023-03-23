@@ -31,7 +31,7 @@ if(mysqli_num_rows($find_user) > 0){
 
     <div class="lg:px-14 p-2 grid grid-cols-1 gap-10 md:grid-cols-1 lg:grid-cols-2 py-10">
         <div class="">
-            <img src="./media/uploads/ad/<?=$ad["image_1"]?>" alt="" class=" h-[70vh] w-full object-fill rounded-md">
+            <img src="./media/uploads/ad/<?=$ad["image_1"]?>" alt="" class=" h-[70vh] w-full object-cover rounded-md overflow-hidden">
 
             <div class=" my-3 border-2 rounded-md p-2">
                 <p>

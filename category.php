@@ -49,7 +49,7 @@ if (mysqli_num_rows($cat_query_run) > 0) {
                         class="mt-4 border-2 rounded-md p-2 border-white hover:border-gray-300 transition-all hover:bg-slate-50">
                         <div class="">
                             <img src="./media/uploads/ad/<?= $item["image_1"] ?>" alt=""
-                                class="rounded-md h-48 w-96 object-cover">
+                                class="rounded-md h-48 w-96 object-cover overflow-hidden">
                             <h4 class="font-bold text-gray-800 mt-3">
                                 <?= $item["name"] ?>
                             </h4>
