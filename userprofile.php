@@ -74,6 +74,13 @@ if (mysqli_num_rows($query_run) > 0) {
                                 <span
                                     class="inline-flex items-center rounded-full bg-red-200 px-2.5 py-0.5 text-xs font-medium text-gray-800">Rejected</span>
                             <?php } ?>
+
+                            <?php
+                            $today = date("Y-m-d");
+                             if(($item['expiry_at'])<$today){?>
+<span
+                                    class="inline-flex items-center rounded-full bg-red-200 px-2.5 py-0.5 text-xs font-medium text-gray-800">Expired</span>
+                            <?php } ?>
                             <h3 class="font-bold">
                                 <?= $item['name'] ?>
                             </h3>

@@ -146,7 +146,7 @@ if (isset($_POST["submit"])) {
                             <div>
                                 <label class="block text-sm font-medium leading-6 text-gray-900">Add Photos</label>
                                 <input type="file" name="product-photo" required value="<?= $form_data['image_1'] ?>">
-                                <input type="hidden" name="product-photo-old" required
+                                <input type="hidden" name="product-photo-old" 
                                     value="<?= $form_data['image_1'] ?>">
                             </div>
                         </div>
