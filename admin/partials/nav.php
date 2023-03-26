@@ -5,7 +5,7 @@
 <nav class="bg-white shadow">
   <div class="container mx-auto px-4">
     <div class="flex justify-between items-center py-4">
-      <a href="/" class="text-lg font-bold text-gray-800">RamroBazar- Admin</a>
+      <a href="index.php" class="text-lg font-bold text-gray-800">RamroBazar- Admin</a>
       <div class="flex">
         
        

@@ -92,9 +92,9 @@ if (mysqli_num_rows($query_run) > 0) {
                     </div>
 
                     <div class=" flex flex-col items-center text-gray-700 border-l-2 px-2">
-                        <a href="#" title="Boost" class="text-green-700 border-b-[1px] pb-1">
+                        <!-- <a href="boostad.php" title="Boost" class="text-green-700 border-b-[1px] pb-1">
                             <i class="fa fa-rocket"></i>
-                        </a>
+                        </a> -->
                         <a href="deleteproduct.php?id=<?= $item["ad_id"] ?>" title="Delete"
                             class="text-red-900 border-b-[1px] pb-1">
                             <i class="fa fa-trash"></i>
